@@ -16,6 +16,15 @@ def app
   MyApp
 end
 
+def populate_links
+  link = Link.create(title: 'Makers Academy', url: 'http://makersacademy.se', description: 'Whatever', user_id: 1)
+  ['start-up', 'sweden', 'incubator'].each do |tag|
+    new_tag = Tag.first_or_create(title: tag)
+    link.tags << new_tag
+    link.save
+  end
+end
+
 Capybara.app = MyApp
 
 RSpec.configure do |config|
@@ -43,3 +52,5 @@ RSpec.configure do |config|
   end
 
 end
+
+

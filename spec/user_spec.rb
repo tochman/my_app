@@ -14,6 +14,12 @@ describe User do
    it { is_expected.to validate_presence_of :email }
    it { is_expected.to validate_presence_of :password }
    
+   describe 'password encryption' do
+     it 'encrypts password' do
+       
+     end
+   end
+   
    describe 'user authentication' do
      before { @user = User.create(email: 'thomas@makersacademy.se', password: 'password', password_confirmation: 'password')
 }
