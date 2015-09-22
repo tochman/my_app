@@ -25,8 +25,26 @@ class MyApp < Sinatra::Base
 
   DataMapper.auto_upgrade!
   #binding.pry
+  
+  before do
+    @user = User.get(session[:user_id])
+  end
+  
+  register do
+     def auth (type)
+       condition do
+         redirect "/login" unless send("is_#{type}?")
+       end
+     end
+   end
    
-  get '/' do 
+   helpers do
+     def is_user?
+       @user != nil
+     end
+   end
+   
+  get '/', auth: :user do 
     @links = Link.all
     erb :index
   end
@@ -44,6 +62,20 @@ class MyApp < Sinatra::Base
     else
       erb :sign_up
     end
+  end
+  
+  get '/login' do
+    erb :login
+  end
+  
+  post "/login" do
+    binding.pry
+    user_params = params[:user]
+    session[:user_id] = User.authenticate(user_params[:email], user_params[:password])
+  end
+  
+  get "/logout" do
+    session[:user_id] = nil
   end
   
 
