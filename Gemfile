@@ -5,6 +5,7 @@ gem 'data_mapper'
 gem "pg"
 gem "dm-postgres-adapter"
 gem 'sinatra-formhelpers-ng'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'capybara'
