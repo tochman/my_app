@@ -23,11 +23,11 @@ describe User do
    describe 'user authentication' do
      before { @user = User.create(email: 'thomas@makersacademy.se', password: 'password', password_confirmation: 'password')
 }
-     it 'with valid credentials' do
+     it 'succeeds with valid credentials' do
        expect(User.authenticate('thomas@makersacademy.se', 'password')).to eq @user
      end
      
-     it 'with invalid credentials' do
+     it 'fails with invalid credentials' do
        expect(User.authenticate('thomas@makersacademy.se', 'wrong-password')).to eq nil
      end
    end

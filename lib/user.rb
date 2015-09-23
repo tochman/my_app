@@ -12,7 +12,7 @@ class User
   property :email, String, format: :email_address, unique: true, message: "This email is already taken"
   property :password_digest, Text
   
-  has n, :links, through: Resource
+  has n, :links
   
   validates_confirmation_of :password, message: "Sorry, your passwords don't match"
   validates_presence_of :email

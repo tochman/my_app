@@ -43,7 +43,7 @@ class MyApp < Sinatra::Base
      end
    end
    
-  get '/', auth: :user do 
+  get '/', auth: :user do
     @links = Link.all
     erb :index
   end
@@ -69,6 +69,7 @@ class MyApp < Sinatra::Base
   end
   
   post "/login" do
+    #binding.pry
     user_params = params[:user]
     @user = User.authenticate(user_params[:email], user_params[:password])
     session[:user_id] = @user.id
