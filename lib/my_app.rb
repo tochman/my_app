@@ -74,11 +74,26 @@ class MyApp < Sinatra::Base
     @user = User.authenticate(user_params[:email], user_params[:password])
     session[:user_id] = @user.id
     @links = Link.all
-    redirect '/'
+    
   end
   
   get "/logout" do
     session[:user_id] = nil
+    redirect '/'
+  end
+  
+  get '/links/new' do
+    erb :'links/new'
+  end
+  
+  post '/links/create' do
+    #binding.pry
+    link_params = params[:link]
+    Link.create(title: link_params[:title], 
+    url: link_params[:url], 
+    description: link_params[:description], 
+    created_at: Time.now, 
+    user_id: @user.id)
     redirect '/'
   end
   
