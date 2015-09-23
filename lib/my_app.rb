@@ -41,6 +41,10 @@ class MyApp < Sinatra::Base
      def is_user?
        @user != nil
      end
+     
+     def current_user
+       @user 
+     end
    end
    
   get '/' do
