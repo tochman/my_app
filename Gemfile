@@ -2,7 +2,8 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 gem 'data_mapper'
-gem 'dm-postgres-adapter'
+gem "pg"
+gem "dm-postgres-adapter"
 gem 'sinatra-formhelpers-ng'
 
 group :development, :test do
