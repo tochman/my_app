@@ -49,7 +49,7 @@ class MyApp < Sinatra::Base
   end
   
   get '/sign-up' do
-    erb :sign_up
+    erb :sign_up, layout: :new_session_layout
   end
   
   post '/register' do 
@@ -65,7 +65,7 @@ class MyApp < Sinatra::Base
   end
   
   get '/login' do
-    erb :login 
+    erb :login, layout: :new_session_layout
   end
   
   post "/login" do
@@ -79,6 +79,7 @@ class MyApp < Sinatra::Base
   
   get "/logout" do
     session[:user_id] = nil
+    redirect '/'
   end
   
 

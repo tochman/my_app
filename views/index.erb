@@ -1,6 +1,6 @@
 <h1>All links</h1>
 <% if @links.empty? %>
-	<p>There are lo links in the system</p>
+	<p>There are no links in the system</p>
 <% else %>
 	<% @links.each do |link| %>
 		<a href="<%= link[:url] %>"><%= link[:title] %></a><br />

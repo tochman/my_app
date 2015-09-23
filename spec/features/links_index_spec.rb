@@ -10,7 +10,7 @@ feature 'application setup' do
     end
     
     scenario 'displays no links message' do 
-      expect(page).to have_content 'There are lo links in the system'
+      expect(page).to have_content 'There are no links in the system'
     end
     
     scenario 'displays link information' do
