@@ -1,14 +1,49 @@
-<%= form('/links/create', :post) %>
+<div class="row">
+  <div class="large-6 columns">
+    <div class="signup-panel">
+      <p class="welcome">Add Link</p>
 
-<% fieldset(:link) do |f| %>
-	<%= f.label :title %>
-  	<%= f.input(:title) %>
-	<%= f.label :url %>
-  	<%= f.input(:url) %>
-	<%= f.label :description %>
-  	<%= f.textarea(:description) %>
-	<%= f.label :tags %>
-  	<%= f.input(:tags) %>
-<% end %>
+      <%= form('/links/create', :post) %>
+      <% fieldset(:link) do |f| %>
+          <div class="row collapse">
+            <div class="small-2  columns">
+              <span class="prefix"><i class="fi-bookmark" style="font-size: 24px;"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <%= f.input :title, placeholder: 'Title' %>
+            </div>
+          </div>
 
-<%= submit 'Add' %>
+          <div class="row collapse">
+            <div class="small-2 columns ">
+              <span class="prefix"><i class="fi-link" style="font-size: 24px;"></i></span>
+            </div>
+            <div class="small-10 columns ">
+              <%= f.input :url, placeholder: 'URL' %>
+            </div>
+          </div>
+
+          <div class="row collapse">
+            <div class="small-12 columns ">
+				<%= f.label :description %>
+              <%= f.textarea :description %>
+            </div>
+          </div>
+		  
+          <div class="row collapse">
+            <div class="small-2  columns">
+              <span class="prefix"><i class="fi-pricetag-multiple" style="font-size: 24px;"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <%= f.input :tags, placeholder: 'Tags (comma separated)' %>
+            </div>
+          </div>
+
+      <% end %>
+
+      <%= submit 'Add', class: 'button' %>
+    </div>
+  </div>
+
+</div>
+

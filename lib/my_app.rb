@@ -53,7 +53,7 @@ class MyApp < Sinatra::Base
   end
   
   get '/sign-up' do
-    erb :sign_up, layout: :new_session_layout
+    erb :sign_up#, layout: :new_session_layout
   end
   
   post '/register' do 
@@ -69,7 +69,7 @@ class MyApp < Sinatra::Base
   end
   
   get '/login' do
-    erb :login, layout: :new_session_layout
+    erb :login#, layout: :new_session_layout
   end
   
   post "/login" do

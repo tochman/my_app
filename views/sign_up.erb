@@ -1,13 +1,42 @@
-<%= form('/register', :post) %>
+<div class="row">
+  <div class="large-6 columns">
+    <div class="signup-panel">
+      <p class="welcome">New Users</p>
 
-<% fieldset(:user) do |f| %>
-	<%= f.label :email %>
-  	<%= f.input(:email) %>
-	<%= f.label :password %>
-  	<%= f.password(:password) %>
-	<%= f.label :password_confirmation %>
-  	<%= f.password(:password_confirmation) %>
-<% end %>
+      <%= form('/register', :post) %>
+      <% fieldset(:user) do |f| %>
+          <div class="row collapse">
+            <div class="small-2  columns">
+              <span class="prefix"><i class="fi-torso-female"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <%= f.input :email, placeholder: 'Email' %>
+            </div>
+          </div>
 
-<%= submit 'Sign up' %>
-<p>Already have an account? <%= link 'Sign in', '/login'%>
+          <div class="row collapse">
+            <div class="small-2 columns ">
+              <span class="prefix"><i class="fi-lock"></i></span>
+            </div>
+            <div class="small-10 columns ">
+              <%= f.password :password, placeholder: 'Password' %>
+            </div>
+          </div>
+
+          <div class="row collapse">
+            <div class="small-2 columns ">
+              <span class="prefix"><i class="fi-lock"></i></span>
+            </div>
+            <div class="small-10 columns ">
+              <%= f.password :password_confirmation, placeholder: 'Password' %>
+            </div>
+          </div>
+
+      <% end %>
+
+      <%= submit 'Sign up', class: 'button' %>
+      <p>Already have an account? <%= link 'Sign in', '/login' %></p>
+    </div>
+  </div>
+
+</div>

@@ -1,11 +1,33 @@
-<%= form('/login', :post) %>
+<div class="row">
+  <div class="large-6 columns">
+    <div class="signup-panel">
+      <p class="welcome">Registered Users</p>
 
-<% fieldset(:user) do |f| %>
-	<%= f.label :email %>
-  	<%= f.input :email %>
-	<%= f.label :password %>
-  	<%= f.password :password %>
-<% end %>
+      <%= form('/login', :post) %>
+      <% fieldset(:user) do |f| %>
+          <div class="row collapse">
+            <div class="small-2  columns">
+              <span class="prefix"><i class="fi-torso-female"></i></span>
+            </div>
+            <div class="small-10  columns">
+              <%= f.input :email, placeholder: 'Email' %>
+            </div>
+          </div>
 
-<%= submit 'Login' %>
-<p>Not registred? <%= link 'Sign up', '/sign-up'%>
+          <div class="row collapse">
+            <div class="small-2 columns ">
+              <span class="prefix"><i class="fi-lock"></i></span>
+            </div>
+            <div class="small-10 columns ">
+              <%= f.password :password, placeholder: 'Password' %>
+            </div>
+          </div>
+
+      <% end %>
+
+      <%= submit 'Login', class: 'button' %>
+      <p>Not registred? <%= link 'Sign up', '/sign-up' %>
+    </div>
+  </div>
+
+</div>

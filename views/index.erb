@@ -1,29 +1,42 @@
-<h1>All links</h1>
-<% if @links.empty? %>
-	<p>There are no links in the system</p>
-<% else %>
-	<% @links.each do |link| %>
-		<%= link  link[:title], link[:url] %><br />
-		<p><%= link[:description] %> </p>
-	
+<div class="row">
+  <div class="small-9 columns small-centered">
+    <h1>All links</h1>
+    <% if @links.empty? %>
+        <article class="link">
+          <p>There are no links in the system</p>
+        </article>
+    <% else %>
+        <% @links.each do |link| %>
+            <article class="link">
+              <div class="link-desc">
+                <h4 class="link-desc-header">
+                  <%= link link[:title], link[:url] %>
+                </h4>
 
-		<% if link.tags.any? %>
-			<p>
-				<small> 
-					Tags:
-					<% link.tags.each do |tag| %>
-					<%= tag[:title]%>
-					<% end %>
-				</small>
-			</p>
-		<% end %>
+                <p class="link-desc-detail">
+                  <%= link[:description] %>
+                </p>
 
-		<p>
-			<small> 
-				Created: <%= link[:created_at] %> by: <%= link.user[:email] %>
-			</small>
-		</p>
+                <% if link.tags.any? %>
+                    <p class="link-desc-detail">
+                      <small>
+                        Tags:
+                        <% link.tags.each do |tag| %>
+                            <%= tag[:title] %>
+                        <% end %>
+                      </small>
+                    </p>
+                <% end %>
+                <p class="link-desc-detail">
+                  <small>
+                    Created: <%= link[:created_at] %> by: <%= link.user[:email] %>
+                  </small>
+                </p>
+              </div>
+            </article>
+        <% end %>
+    <% end %>
+    <%= link 'Add link', '/links/new', class: 'button' %>
+  </div>
+</div>
 
-	<% end %> 
-<% end %> 
-<%= link 'Add link', '/links/new'%>
