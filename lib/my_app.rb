@@ -6,7 +6,7 @@ require 'data_mapper'
 require './lib/link'
 require './lib/tag'
 require './lib/user'
-require 'pry'
+#require 'pry'
 
 
 
