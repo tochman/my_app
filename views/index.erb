@@ -3,7 +3,7 @@
 	<p>There are no links in the system</p>
 <% else %>
 	<% @links.each do |link| %>
-		<a href="<%= link[:url] %>"><%= link[:title] %></a><br />
+		<%= link  link[:title], link[:url] %><br />
 		<p><%= link[:description] %> </p>
 	
 
@@ -26,3 +26,4 @@
 
 	<% end %> 
 <% end %> 
+<%= link 'Add link', '/links/new'%>

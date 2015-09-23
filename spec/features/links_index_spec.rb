@@ -10,7 +10,13 @@ feature 'application setup' do
     end
     
     scenario 'displays no links message' do 
+      visit '/'
       expect(page).to have_content 'There are no links in the system'
+    end
+    
+    scenario 'displays Add Link link' do 
+      visit '/'
+      expect(page).to have_selector "a[href='/links/new']"
     end
     
     scenario 'displays link information' do

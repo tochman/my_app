@@ -1,7 +1,7 @@
 <% if @user %>
 	<p>Logged in as <%= @user.email %> - <%= link 'Log out', '/logout'%></p>
 <% else %>
-	<p><%= link 'Sign up', '/sign-up'%> or <%= link 'Sign in', '/sign-up'%></p>
+	<p><%= link 'Sign up', '/sign-up'%> or <%= link 'Sign in', '/login'%></p>
 <% end %>
 
 <%= yield %>

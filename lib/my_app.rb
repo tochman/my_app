@@ -43,7 +43,7 @@ class MyApp < Sinatra::Base
      end
    end
    
-  get '/', auth: :user do
+  get '/' do
     @links = Link.all
     erb :index
   end
@@ -82,18 +82,23 @@ class MyApp < Sinatra::Base
     redirect '/'
   end
   
-  get '/links/new' do
+  get '/links/new', auth: :user do
     erb :'links/new'
   end
   
-  post '/links/create' do
+  post '/links/create', auth: :user do
     #binding.pry
     link_params = params[:link]
-    Link.create(title: link_params[:title], 
+    link = Link.create(title: link_params[:title], 
     url: link_params[:url], 
     description: link_params[:description], 
     created_at: Time.now, 
     user_id: @user.id)
+    tags = link_params[:tags].split(',')
+    tags.each do |tag|
+      link.tags << Tag.first_or_create(title: tag.strip)
+      link.save
+    end
     redirect '/'
   end
   

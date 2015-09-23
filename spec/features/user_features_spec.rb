@@ -32,7 +32,7 @@ feature 'login' do
   end
   
   scenario 'reroute to login page if user is not logged in' do 
-    visit '/'
+    visit '/links/new'
     expect(page.current_path).to eq '/login'
   end
   
