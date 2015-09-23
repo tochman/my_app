@@ -1,0 +1,8 @@
+<%= form('/login', :post) %>
+
+<% fieldset(:user) do |f| %>
+  <%= f.input(:email) %>
+  <%= f.password(:password) %>
+<% end %>
+
+<%= submit 'Login' %>

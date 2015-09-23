@@ -1,0 +1,9 @@
+<%= form('/register', :post) %>
+
+<% fieldset(:user) do |f| %>
+  <%= f.input(:email) %>
+  <%= f.password(:password) %>
+  <%= f.password(:password_confirmation) %>
+<% end %>
+
+<%= submit 'Sign up' %>

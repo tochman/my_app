@@ -24,10 +24,9 @@ class MyApp < Sinatra::Base
   DataMapper.finalize
 
   DataMapper.auto_upgrade!
-  #binding.pry
   
   before do
-    @user = User.get(session[:user_id])
+    @user = User.get(session[:user_id]) unless is_user?
   end
   
   register do
@@ -36,7 +35,7 @@ class MyApp < Sinatra::Base
          redirect "/login" unless send("is_#{type}?")
        end
      end
-   end
+  end
    
    helpers do
      def is_user?
@@ -65,13 +64,15 @@ class MyApp < Sinatra::Base
   end
   
   get '/login' do
-    erb :login
+    is_user? ? erb :login : redirect '/'
   end
   
   post "/login" do
-    binding.pry
     user_params = params[:user]
-    session[:user_id] = User.authenticate(user_params[:email], user_params[:password])
+    @user = User.authenticate(user_params[:email], user_params[:password])
+    session[:user_id] = @user.id
+    @links = Link.all
+    redirect '/'
   end
   
   get "/logout" do
@@ -79,6 +80,5 @@ class MyApp < Sinatra::Base
   end
   
 
-  # start the server if ruby file executed directly
   run! if app_file == $0
 end

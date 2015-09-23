@@ -25,6 +25,14 @@ def populate_links
   end
 end
 
+def create_and_login_user(email, password)
+  User.create(email: email, password: password, password_confirmation: password)
+  visit '/login'
+  fill_in 'user[email]', with: email
+  fill_in 'user[password]', with: password
+  click_button 'Login'
+end
+
 Capybara.app = MyApp
 
 RSpec.configure do |config|
