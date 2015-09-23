@@ -1,23 +1,28 @@
-<% @links.each do |link| %>
-	<a href="<%= link[:url] %>"><%= link[:title] %></a><br />
-	<p><%= link[:description] %> </p>
+<h1>All links</h1>
+<% if @links.empty? %>
+	<p>There are lo links in the system</p>
+<% else %>
+	<% @links.each do |link| %>
+		<a href="<%= link[:url] %>"><%= link[:title] %></a><br />
+		<p><%= link[:description] %> </p>
 	
 
-	<% if link.tags.any? %>
-	<p>
-		<small> 
-			Tags:
-		<% link.tags.each do |tag| %>
-			<%= tag[:title]%>
+		<% if link.tags.any? %>
+			<p>
+				<small> 
+					Tags:
+					<% link.tags.each do |tag| %>
+					<%= tag[:title]%>
+					<% end %>
+				</small>
+			</p>
 		<% end %>
-		</small>
-	</p>
-	<% end %>
 
-	<p>
-		<small> 
-			Created: <%= link[:created_at] %> by: <%= link[:created_by] %>
-		</small>
-	</p>
+		<p>
+			<small> 
+				Created: <%= link[:created_at] %> by: <%= link.user[:email] %>
+			</small>
+		</p>
 
+	<% end %> 
 <% end %> 

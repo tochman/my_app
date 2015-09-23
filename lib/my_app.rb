@@ -56,6 +56,7 @@ class MyApp < Sinatra::Base
     user_params = params[:user]
     @user = User.create(email: user_params[:email], password: user_params[:password], password_confirmation: user_params[:password_confirmation])
     unless @user.nil?
+      #binding.pry
       @links = Link.all
       erb :index
     else
@@ -64,7 +65,7 @@ class MyApp < Sinatra::Base
   end
   
   get '/login' do
-    is_user? ? erb :login : redirect '/'
+    erb :login 
   end
   
   post "/login" do

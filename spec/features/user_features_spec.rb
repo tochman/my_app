@@ -13,7 +13,6 @@ feature 'user sign up' do
   
   scenario 'creates new user' do 
     expect(User.count).to eq 0
-    populate_links
     fill_in 'user[email]', with: 'thomas@makersacademy.se'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'    

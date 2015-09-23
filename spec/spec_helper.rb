@@ -16,8 +16,10 @@ def app
   MyApp
 end
 
-def populate_links
-  link = Link.create(title: 'Makers Academy', url: 'http://makersacademy.se', description: 'Whatever', user_id: 1)
+def populate_links(email)
+  #binding.pry
+  user = User.first(email: 'thomas@makersacademy.se')
+  link = Link.create(title: 'Makers Academy', url: 'http://makersacademy.se', description: 'Whatever', user_id: user.id)
   ['start-up', 'sweden', 'incubator'].each do |tag|
     new_tag = Tag.first_or_create(title: tag)
     link.tags << new_tag

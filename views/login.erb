@@ -1,8 +1,11 @@
 <%= form('/login', :post) %>
 
 <% fieldset(:user) do |f| %>
-  <%= f.input(:email) %>
-  <%= f.password(:password) %>
+	<%= f.label :email %>
+  	<%= f.input :email %>
+	<%= f.label :password %>
+  	<%= f.password :password %>
 <% end %>
 
 <%= submit 'Login' %>
+<p>Not registred? <%= link 'Sign up', '/sign-up'%>
