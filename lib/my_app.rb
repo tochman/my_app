@@ -18,14 +18,7 @@ class MyApp < Sinatra::Base
   env = ENV['RACK_ENV'] || "development"
   helpers Sinatra::FormHelpers
   
-  configure :development do
-    DataMapper.setup(:default, "postgres://localhost/my_app_#{env}")
-  end
-   
-  configure :production do
-    DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_RED_URL'])
-  end
-  
+  DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_RED_URL'] || "postgres://localhost/my_app_#{env}")  
   
   DataMapper::Model.raise_on_save_failure = true
    
