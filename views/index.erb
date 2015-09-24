@@ -14,11 +14,11 @@
             <article class="link">
               <div class="link-desc">
                 <h4 class="link-desc-header">
-                  <%= link link[:title], link[:url] %>
+                  <%= link link[:title], link[:url] %><small> <%= link 'Destroy', "/destroy/#{link.id}" if current_user.is_owner?(link)%></small>
                 </h4>
 
                 <p class="link-desc-detail">
-                  <%= link[:description] %> <br/><small><%= link 'Destroy', "/destroy/#{link.id}" if current_user.is_owner?(link)%></small>
+                  <%= link[:description] %>
                 </p>
 
                 <% if link.tags.any? %>

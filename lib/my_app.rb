@@ -14,7 +14,7 @@ class MyApp < Sinatra::Base
   enable :sessions
   set :session_secret, '123454321'
   use Rack::Session::Pool
-  env = ENV['RACK_ENV'] || "development"
+  env = ENV['RACK_ENV'] || 'development'
 
   DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/my_app_#{env}")
 
