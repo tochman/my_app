@@ -60,6 +60,7 @@ class MyApp < Sinatra::Base
   post '/register' do 
     user_params = params[:user]
     @user = User.create(email: user_params[:email], password: user_params[:password], password_confirmation: user_params[:password_confirmation])
+    session[:user_id] = @user.id
     unless @user.nil?
       #binding.pry
       @links = Link.all
