@@ -61,16 +61,16 @@ class MyApp < Sinatra::Base
   end
 
   post '/register' do
-    user_params = params[:user]
-    @user = User.create(email: user_params[:email], password: user_params[:password], password_confirmation: user_params[:password_confirmation])
-    session[:user_id] = @user.id
-    unless @user.nil?
-      #binding.pry
+    begin
+      user_params = params[:user]
+      @user = User.create(email: user_params[:email], password: user_params[:password], password_confirmation: user_params[:password_confirmation])
+      session[:user_id] = @user.id
       flash[:notice] = "Welcome #{@user.email}!"
       @links = Link.all
       erb :index
-    else
-      erb :sign_up
+    rescue
+      flash[:notice] = 'Could not register you... Check your input.'
+      redirect '/sign-up'
     end
   end
 

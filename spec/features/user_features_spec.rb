@@ -11,13 +11,23 @@ feature 'user sign up' do
     expect(page).to have_selector "input[name='user[password_confirmation]']"
   end
   
-  scenario 'creates new user' do 
+  scenario 'creates new user with valid input' do
     expect(User.count).to eq 0
     fill_in 'user[email]', with: 'thomas@makersacademy.se'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'    
     click_button 'Sign up'
     expect(User.count).to eq 1
+  end
+
+  scenario 'renders error message with invalid input' do
+    expect(User.count).to eq 0
+    fill_in 'user[email]', with: 'thomas@makersacademy.se'
+    fill_in 'user[password]', with: 'password'
+    fill_in 'user[password_confirmation]', with: 'wrong-password'
+    click_button 'Sign up'
+    expect(User.count).to eq 0
+    expect(page).to have_content 'Could not register you... Check your input.'
   end
   
 end
@@ -45,4 +55,5 @@ feature 'login' do
     expect(page.current_path).to eq '/'
     expect(page).to have_content 'Welcome thomas@makersacademy.se'
   end
+
 end
