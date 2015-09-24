@@ -43,5 +43,6 @@ feature 'login' do
     fill_in 'user[password]', with: 'password'
     click_button 'Login'
     expect(page.current_path).to eq '/'
+    expect(page).to have_content 'Welcome thomas@makersacademy.se'
   end
 end

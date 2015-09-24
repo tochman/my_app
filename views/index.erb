@@ -29,7 +29,7 @@
                 <% end %>
                 <p class="link-desc-detail">
                   <small>
-                    Created: <%= link[:created_at] %> by: <%= link.user[:email] %>
+                    Created: <%= link[:created_at].strftime('%I:%M:%S') %> by: <%= link.user[:email] %>
                   </small>
                 </p>
               </div>
