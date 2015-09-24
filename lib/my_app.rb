@@ -74,7 +74,7 @@ class MyApp < Sinatra::Base
     erb :login#, layout: :new_session_layout
   end
   
-  post "/login" do
+  post '/login' do
     #binding.pry
     user_params = params[:user]
     @user = User.authenticate(user_params[:email], user_params[:password])
@@ -83,7 +83,7 @@ class MyApp < Sinatra::Base
     redirect '/'
   end
   
-  get "/logout" do
+  get '/logout' do
     session[:user_id] = nil
     redirect '/'
   end
