@@ -5,8 +5,7 @@ feature 'display links by tag' do
       populate_links(user[:email])
     end
 
-    scenario 'by cklicking on tag as link' do
-
+    scenario 'by clicking on tag as link' do
       visit '/'
       click_link('sweden', match: :first)
       expect(page).to have_link 'Makers Academy', href: 'http://makersacademy.se'
