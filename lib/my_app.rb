@@ -3,11 +3,10 @@ require 'sinatra/form_helpers'
 require 'sinatra/flash'
 require 'tilt/erb'
 require 'data_mapper'
-#require 'dm-postgres-adapter'
 require './lib/link'
 require './lib/tag'
 require './lib/user'
-#require 'pry'
+require 'pry'
 
 
 class MyApp < Sinatra::Base
@@ -51,9 +50,17 @@ class MyApp < Sinatra::Base
     end
   end
 
+  #binding.pry
+
   get '/' do
     @links = Link.all
     erb :index
+  end
+
+  get '/links/:tag' do
+    tag = Tag.first(title: params[:tag])
+    @links = tag.links
+    erb :index, locals: {tag: tag[:title]}
   end
 
   get '/sign-up' do

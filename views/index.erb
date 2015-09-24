@@ -1,6 +1,10 @@
 <div class="row">
   <div class="small-9 columns small-centered">
-    <h1>All links</h1>
+    <% if tag %>
+        <h1>Links tagged with: "<%= tag %>"</h1>
+    <% else %>
+        <h1>All links</h1>
+    <% end %>
     <% if @links.empty? %>
         <article class="link">
           <p>There are no links in the system</p>
@@ -22,14 +26,14 @@
                       <small>
                         Tags:
                         <% link.tags.each do |tag| %>
-                            <%= tag[:title] %>
+                            <%= link tag[:title], "/links/#{tag[:title]}" %>
                         <% end %>
                       </small>
                     </p>
                 <% end %>
                 <p class="link-desc-detail">
                   <small>
-                    Created: <%= link[:created_at].strftime('%I:%M:%S') %> by: <%= link.user[:email] %>
+                    Created: <%= link[:created_at].strftime('%Y-%m-%d') %> by: <%= link.user[:email] %>
                   </small>
                 </p>
               </div>
