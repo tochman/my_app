@@ -57,10 +57,11 @@ class MyApp < Sinatra::Base
     erb :index
   end
 
-  get '/links/:tag' do
+  get '/tags/:tag' do
     tag = Tag.first(title: params[:tag])
     @links = tag.links
-    erb :index, locals: {tag: tag[:title]}
+    @current_tag = tag[:title]
+    erb :index
   end
 
   get '/sign-up' do
