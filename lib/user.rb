@@ -36,6 +36,10 @@ class User
     end
   end
 
+  def is_owner?(obj)
+    obj.user_id == self.id
+  end
+
 
 
 end

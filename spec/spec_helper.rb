@@ -18,7 +18,8 @@ end
 
 def populate_links(email)
   #binding.pry
-  user = User.first(email: 'thomas@makersacademy.se')
+  user = User.first(email: email)
+  user = User.create(email: email, password: 'password', password_confirmation: 'password') unless user
   link = Link.create(title: 'Makers Academy', url: 'http://makersacademy.se', description: 'Whatever', user_id: user.id)
   ['start-up', 'sweden', 'incubator'].each do |tag|
     new_tag = Tag.first_or_create(title: tag)

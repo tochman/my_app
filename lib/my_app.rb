@@ -39,8 +39,6 @@ class MyApp < Sinatra::Base
   end
 
   helpers do
-
-
     def is_user?
       @user != nil
     end
@@ -62,6 +60,12 @@ class MyApp < Sinatra::Base
     @links = tag.links
     @current_tag = tag[:title]
     erb :index
+  end
+
+  get '/destroy/:id', auth: :user do
+    link = Link.get(params[:id])
+    link.destroy!
+    redirect '/'
   end
 
   get '/sign-up' do

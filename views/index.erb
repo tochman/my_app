@@ -18,7 +18,7 @@
                 </h4>
 
                 <p class="link-desc-detail">
-                  <%= link[:description] %>
+                  <%= link[:description] %> <br/><small><%= link 'Destroy', "/destroy/#{link.id}" if current_user.is_owner?(link)%></small>
                 </p>
 
                 <% if link.tags.any? %>
